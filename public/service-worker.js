@@ -16,3 +16,14 @@ const FILES_TO_CACHE = [
   '/icons/icon-384x384.png',
   '/icons/icon-512x512.png'
 ];
+
+self.addEventListener('install', function(evt) {
+    evt.waitUntil(
+      caches.open(CACHE_NAME).then(cache => {
+        console.log('Sucessful!');
+        return cache.addAll(FILES_TO_CACHE);
+      })
+    );
+  
+    self.skipWaiting();
+  });
