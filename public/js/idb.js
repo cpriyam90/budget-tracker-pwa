@@ -10,3 +10,9 @@ request.onupgradeneeded = function(event) {
   request.onerror = function(event) {
     console.log(event.target.errorCode);
   };
+  
+  function saveRecord(transaction) {
+    const expense = db.expense(['new_transaction'], 'readwrite');
+    const transactionObjectStore = expense.objectStore('new_transaction');
+    transactionObjectStore.add(transaction);
+  }
